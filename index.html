@@ -7,18 +7,18 @@
         <h1>Latine Orthographiam Apis</h1>
         <p id="result"></p>
         <form name="spellingBee" id="spellingBee" action="">
-            <input name="word" onblur = "this.focus()" id="guess" autofocus autocapitalize="characters"/>
+            <input name="word" onblur = "this.focus()" id="guess" autofocus oninput = "this.value = this.value.toUpperCase()" />
         </form>
+        <span id="letterReq"></span>
         <span id="letter1"></span>
         <span id="letter2"></span>
         <span id="letter3"></span>
         <span id="letter4"></span>
         <span id="letter5"></span>
         <span id="letter6"></span>
-        <span id="letterReq"></span>
 
         <div id="correctWords">
-            
+
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="input.js"></script>
