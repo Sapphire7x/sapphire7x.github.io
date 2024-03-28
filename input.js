@@ -24,7 +24,7 @@ function checkWord(event) {
             }
             if(word.indexOf(letters[0]) < 0) { //if doesn't have required letter
                 result.innerHTML = "necesse est habet " + letters[0] + "!";
-            } else if(wordsGotten.indexOf(word) < 0) { //if already guessed
+            } else if(wordsGotten.indexOf(word) >= 0) { //if already guessed
                 result.innerHTML = "iterum?";
             } else if(valid) { // if valid
                 fetch(`https://raw.githubusercontent.com/IohannesArnold/lewis-short-json/master/ls_${word[0]}.json`)
