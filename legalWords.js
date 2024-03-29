@@ -1,4 +1,4 @@
-async function* makeTextFileLineIterator(fileURL) {
+/*async function* makeTextFileLineIterator(fileURL) {
   const utf8Decoder = new TextDecoder("utf-8");
   let response = await fetch(fileURL);
   let reader = response.body.getReader();
@@ -33,7 +33,12 @@ async function* makeTextFileLineIterator(fileURL) {
 for (let line of await makeTextFileLineIterator("realLatin.txt")) {
   processLine(line);
 }
-
+*/
+async function processFile(file) {
+    let text = (await fetch(file)).text();
+    let possible = (await text).split("\n")
+    possible.forEach(line => processLine(line));
+}
 function processLine(line) {
   let good = true;
   for(letter of line) {

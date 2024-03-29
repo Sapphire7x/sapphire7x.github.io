@@ -5,7 +5,7 @@ let wordsGotten = []; //uppercase
 let displayedInput = document.getElementById('guess').innerHTML;
 let form = document.getElementById("spellingBee");
 let result = document.getElementById("result");
-
+processFile('realLatin.txt')
 
 
 form.addEventListener("submit", checkWord)
