@@ -31,8 +31,9 @@ function checkWord(event) {
                     .then(res => res.text())
                     .then((data) => {
                         console.log(data);
-                        if(data.indexOf(word) < 0) {
+                        if(data.indexOf(word.toLowerCase()) < 0) {
                             result.innerHTML = "non est verbum!";
+                            console.log(word.toLowerCase());
                         } else {
                             result.innerHTML = "sic! verbum est!";
                         }
