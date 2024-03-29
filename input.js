@@ -1,10 +1,13 @@
 //get words
 let letters = ['A', 'C', 'D', 'E', 'F', 'G', 'H']; //where first index is the required letter
-let wordsPossible = [];
-let wordsGotten = [];
+let wordsPossible = []; //lowercase
+let wordsGotten = []; //uppercase
 let displayedInput = document.getElementById('guess').innerHTML;
 let form = document.getElementById("spellingBee");
 let result = document.getElementById("result");
+
+
+
 form.addEventListener("submit", checkWord)
 function checkWord(event) {
     event.preventDefault();
@@ -27,7 +30,14 @@ function checkWord(event) {
             } else if(wordsGotten.indexOf(word) >= 0) { //if already guessed
                 result.innerHTML = "iterum?";
             } else if(valid) { // if valid
-                fetch(`realLatin.txt`)
+                if(wordsPossible.indexOf(word.toLowerCase()) < 0) {
+                    result.innerHTML = "non est verbum!";
+                    console.log(wordsPossible);
+                } else {
+                    result.innerHTML = "sic! verbum est!";
+                    wordsGotten.push(word);
+                }
+                /*fetch(`realLatin.txt`)
                     .then(res => res.text())
                     .then((data) => {
                         console.log(data);
@@ -39,7 +49,7 @@ function checkWord(event) {
                         }
                     })
                     .catch((error) => 
-                        console.error("Unable to fetch data:", error));
+                        console.error("Unable to fetch data:", error));*/
             }
         }
     } else {
