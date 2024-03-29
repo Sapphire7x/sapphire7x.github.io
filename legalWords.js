@@ -30,7 +30,7 @@ async function* makeTextFileLineIterator(fileURL) {
   }
 }
 
-for await (let line of makeTextFileLineIterator("realLatin.txt")) {
+for (let line of await makeTextFileLineIterator("realLatin.txt")) {
   processLine(line);
 }
 
