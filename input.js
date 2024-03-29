@@ -27,16 +27,16 @@ function checkWord(event) {
             } else if(wordsGotten.indexOf(word) >= 0) { //if already guessed
                 result.innerHTML = "iterum?";
             } else if(valid) { // if valid
-                fetch(`https://raw.githubusercontent.com/IohannesArnold/lewis-short-json/master/ls_${word[0]}.json`)
-                    .then((res) => {
-                        if (!res.ok) {
-                            throw new Error
-                                (`HTTP error! Status: ${res.status}`);
+                fetch(`realLatin.txt`)
+                    .then(res => res.text())
+                    .then((data) => {
+                        console.log(data);
+                        if(data.indexOf(word) < 0) {
+                            result.innerHTML = "non est verbum!";
+                        } else {
+                            result.innerHTML = "sic! verbum est!";
                         }
-                        return res.json();
                     })
-                    .then((data) => 
-                        console.log(data))
                     .catch((error) => 
                         console.error("Unable to fetch data:", error));
             }
