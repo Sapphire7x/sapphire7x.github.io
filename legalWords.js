@@ -34,23 +34,3 @@ for (let line of await makeTextFileLineIterator("realLatin.txt")) {
   processLine(line);
 }
 */
-async function processFile(file) {
-    let text = (await fetch(file)).text();
-    let possible = (await text).split("\n")
-    possible.forEach(line => processLine(line));
-}
-function processLine(line) {
-  let good = true;
-  for(letter of line) {
-    if(letters.indexOf(letter) < 0) {
-      good = false;
-    }
-  }
-  if(line.indexOf(letters[0]) < 0) {
-    good = false;
-  }
-  if(good) {
-    wordsPossible.push(word);
-    console.log(wordsPossible);
-  }
-}

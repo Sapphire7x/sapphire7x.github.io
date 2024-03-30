@@ -5,6 +5,28 @@ let wordsGotten = []; //uppercase
 let displayedInput = document.getElementById('guess').innerHTML;
 let form = document.getElementById("spellingBee");
 let result = document.getElementById("result");
+
+async function processFile(file) {
+    let text = (await fetch(file)).text();
+    let possible = (await text).split("\n")
+    possible.forEach(line => processLine(line));
+}
+function processLine(line) {
+  let good = true;
+  for(letter of line) {
+    if(letters.indexOf(letter) < 0) {
+      good = false;
+    }
+  }
+  if(line.indexOf(letters[0]) < 0) {
+    good = false;
+  }
+  if(good) {
+    wordsPossible.push(word);
+    console.log(wordsPossible);
+  }
+}
+
 processFile('realLatin.txt')
 
 
