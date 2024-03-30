@@ -1,7 +1,7 @@
 //get words
-let letters = ['A', 'C', 'D', 'E', 'F', 'G', 'H']; //where first index is the required letter
+let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']; //where first index is the required letter
 let wordsPossible = []; //lowercase
-let wordsGotten = []; //uppercase
+let wordsGotten = []; //lower
 let displayedInput = document.getElementById('guess').innerHTML;
 let form = document.getElementById("spellingBee");
 let result = document.getElementById("result");
@@ -9,25 +9,28 @@ let result = document.getElementById("result");
 async function processFile(file) {
     let text = (await fetch(file)).text();
     let possible = (await text).split("\n")
+    console.log(possible);
     possible.forEach(line => processLine(line));
 }
 function processLine(line) {
   let good = true;
-  for(letter of line) {
+  //line = line.toUpperCase();
+  for(let letter of line) {
     if(letters.indexOf(letter) < 0) {
       good = false;
     }
   }
   if(line.indexOf(letters[0]) < 0) {
+    console.log(line)
     good = false;
   }
   if(good) {
-    wordsPossible.push(word);
+    wordsPossible.push(line);
     console.log(wordsPossible);
   }
 }
 
-processFile('realLatin.txt')
+processFile('https://sapphire7x.github.io/latin.txt')
 
 
 form.addEventListener("submit", checkWord)
@@ -36,6 +39,7 @@ function checkWord(event) {
     let word = form.word.value;
     let regex = /^[a-zA-Z]+$/;
     if(regex.test(word)) {
+        word = word.toLowerCase() //make it lowercase
         //It is a valid string
         if(word.length < 4) { //if too short
             result.innerHTML = "necesse est longior!"
@@ -52,14 +56,14 @@ function checkWord(event) {
             } else if(wordsGotten.indexOf(word) >= 0) { //if already guessed
                 result.innerHTML = "iterum?";
             } else if(valid) { // if valid
-                if(wordsPossible.indexOf(word.toLowerCase()) < 0) {
+                if(wordsPossible.indexOf(word) < 0) {
                     result.innerHTML = "non est verbum!";
                     console.log(wordsPossible);
                 } else {
                     result.innerHTML = "sic! verbum est!";
                     wordsGotten.push(word);
                 }
-                /*fetch(`realLatin.txt`)
+                /*fetch(`latin.txt`)
                     .then(res => res.text())
                     .then((data) => {
                         console.log(data);
