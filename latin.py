@@ -1,18 +1,16 @@
 """
+with open("realLatin.txt", "r") as f:
+    lines = f.readlines()
+with open("realLatin.txt", "w") as f:
+    for line in lines:
+        if line.strip(" \n"):
+            f.write(line)
+
 import fileinput
-lines_seen = set();
+#lines_seen = set();
 with fileinput.FileInput('realLatin.txt', inplace=True, backup='.bak') as file:
     for line in file:
-        if line in lines_seen:
-            line = ""
-            try:
-                line.strip("\n")
-            except:
-                #print('')
-                # do nothing if fail ig
-        else:
-            lines_seen.add(line)
-            #print(line.replace("S", ""), end='')
+        print(line.replace("^", ""), end='')
 """
 lines_seen = set() # holds lines already seen
 outfile = open("latin.txt", "w")
