@@ -10,7 +10,7 @@ import fileinput
 #lines_seen = set();
 with fileinput.FileInput('realLatin.txt', inplace=True, backup='.bak') as file:
     for line in file:
-        print(line.replace("^", ""), end='')
+        print(line.replace("\n", '",\n"'), end='')
 """
 lines_seen = set() # holds lines already seen
 outfile = open("latin.txt", "w")

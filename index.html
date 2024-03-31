@@ -2,25 +2,42 @@
 <html>
     <head>
         <title>Latin Spelling Bee</title>
+        <style>
+            #correctWords span {
+                display: block;
+            }
+            #letterReq {
+                color: rgb(188, 188, 16);
+            }
+            .pangram {
+                font-weight: bold;
+            }
+        </style>
     </head>
     <body>
         <h1>Latine Orthographiam Apis</h1>
+        <span id="loading">Loading...</span>
         <p id="result"></p>
         <form name="spellingBee" id="spellingBee" action="">
             <input name="word" onblur = "this.focus()" id="guess" autofocus oninput = "this.value = this.value.toUpperCase()" />
         </form>
-        <span id="letterReq"></span>
-        <span id="letter1"></span>
-        <span id="letter2"></span>
-        <span id="letter3"></span>
-        <span id="letter4"></span>
-        <span id="letter5"></span>
-        <span id="letter6"></span>
-
+        <div id="letters">
+            <span id="letterReq" onclick="clickLetter(0)"></span>
+            <span id="letter1" onclick="clickLetter(1)"></span>
+            <span id="letter2" onclick="clickLetter(2)"></span>
+            <span id="letter3" onclick="clickLetter(3)"></span>
+            <span id="letter4" onclick="clickLetter(4)"></span>
+            <span id="letter5" onclick="clickLetter(5)"></span>
+            <span id="letter6" onclick="clickLetter(6)"></span>
+            <span id="shuffle" onclick="shuffle()"></span>
+            <span id="submit" onclick="checkWord()"></span>
+        </div>
+        <br>
         <div id="correctWords">
 
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="latin.js"></script>
         <script src="input.js"></script>
         <script src="legalWords.js"></script>
     </body>
